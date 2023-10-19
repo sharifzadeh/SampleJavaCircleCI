@@ -1,0 +1,21 @@
+version: 2.1
+executors:
+  default:
+    docker:
+      - image: circleci/openjdk:11-jdk
+jobs:
+  build:
+    executor: default
+    steps:
+      - checkout
+      - run:
+          name: Build and Test
+          command: |
+            mvn compile
+            mvn test
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
